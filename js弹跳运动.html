@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lianxi</title>
+	<style>
+		div{
+			background: red;
+			position: absolute;
+			width: 0;
+			height: 0;
+
+		}
+	</style>
+</head>
+<body>
+	<div id="div"></div>
+</body>
+</html>
+<script type="text/javascript">
+	var div = document.getElementById('div');
+	var preX = 0,
+		preY = 0,
+		newX = 0,
+		newY = 0,
+		speedX = 0,
+		speedY = 0,
+		mouseX = 0,
+		mouseY = 0;
+	div.onmousedown = function(e){
+		mouseX = e.clientX;
+		mouseY = e.clientY;
+		preX = mouseX;
+		preY = mouseY;
+		var disX = mouseX - div.offsetLeft;
+		var disY = mouseY - div.offsetTop;
+		document.onmousemove = function(e){
+			clearInterval(div.timer2);
+			var mouseX = e.clientX;
+			var mouseY = e.clientY;
+			newX = mouseX;
+			newY = mouseY;
+			var mouseX = e.clientX;
+			var mouseY = e.clientY;
+			speedX = newX - preX;
+			speedY = newY - preY;
+			preX = newX;
+			preY = newY;
+			var l = mouseX - disX;
+			var t = mouseY - disY;
+			if (l<0)
+			 {
+			 	l = 0;
+			 }
+			 else if (l>document.documentElement.clientWidth-div.offsetWidth) 
+			 {
+			 	l=document.documentElement.clientWidth-div.offsetWidth;
+			 	
+			 }
+			 if(t < 0)
+			 {
+			 	t = 0;
+			 
+
+			 }
+			 else if(t > document.documentElement.clientHeight-div.offsetHeight)
+			 {
+			 	t = document.documentElement.clientHeight-div.offsetHeight;
+			 }
+			
+			div.style.left = l + 'px';
+			div.style.top = t +　'px';
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup = null;
+				throwDown(div,speedX,speedY);
+			}
+		}
+
+	}
+
+	toChange(div);
+
+	function toChange(obj){
+		var w = 0,
+			h = 0;
+		obj.timer1 = setInterval(function(){
+			obj.style.width = (w+=3)+'px';
+			obj.style.height = (h+=3)+'px';
+			obj.style.left = (document.documentElement.clientWidth-obj.offsetWidth)/2+'px';
+			obj.style.top = (document.documentElement.clientHeight-obj.offsetHeight)/2+'px';
+
+			if(w>100)
+			{
+				obj.style.width = '100px';
+				obj.style.height = '100px';
+				clearInterval(obj.timer1);
+				throwDown(obj,speedX,speedY)
+			}
+		},30)
+	}
+	function throwDown(obj,speedX,speedY)
+	{
+		clearInterval(obj.timer2);
+		obj.timer2 = setInterval(function(){
+			speedY+=3;//重力
+			var l = obj.offsetLeft + speedX;
+			var t = obj.offsetTop + speedY;
+			if (l<0)
+			 {
+			 	l = 0;
+			 	speedX*=-0.75;
+			 	speedY*=0.75;
+			 }
+			 else if (l>document.documentElement.clientWidth-obj.offsetWidth) 
+			 {
+			 	l=document.documentElement.clientWidth-obj.offsetWidth;
+			 	speedX*=-0.75;
+			 	speedY*=0.75;
+			 }
+			 if(t < 0)
+			 {
+			 	t = 0;
+			 	speedX*=0.75;
+			 	speedY*=-0.75;
+
+			 }
+			 else if(t > document.documentElement.clientHeight-obj.offsetHeight)
+			 {
+			 	t = document.documentElement.clientHeight-obj.offsetHeight;
+			 	speedX*=0.75;
+			 	speedY*=-0.75;
+			 }
+			obj.style.left = l + 'px';
+			obj.style.top = t + 'px';
+			console.log('running');
+			
+		},30)
+
+	}
+</script>

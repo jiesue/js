@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="tweenMax.min.js"></script>
+	<title>百叶窗效果</title>
+	<style type="text/css">
+		#wrap{
+			width: 700px;
+			height: 400px;
+			margin: 50px auto;
+
+		}
+		.part{
+			width: 100%;
+			height: 10px;
+			background-size: cover !important;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		
+	</div>
+	<!-- <a href="javascript:;" id="btn">点击换图--------------------------------------</a> -->
+</body>
+<script>
+
+	var wrap = document.getElementById("wrap");
+
+	for (var i = 39; i >= 0; i--) {//创建每个部分的图的div容器
+		var div = document.createElement("div");
+		div.className='part';
+		wrap.appendChild(div);
+	}
+	
+
+	var isStart = false;
+	var aPart = document.getElementsByClassName("part");
+	
+
+	for (var j = 0 ; j <40; j++) {//给每个部分的容器设置对应的图片背景
+		aPart[j].style.background = "url(img/0.jpg) 0px "+(j*-10)+"px";
+	}
+	function set(num){
+
+		if(isStart){ return; }//如果没有转换完成就不要在执行
+		isStart = true;
+		var i=0;
+		var t = new TimelineMax();
+		t.staggerTo(".part",0.1,{
+			rotationX:90,
+			onComplete:function(){		
+				this.target.style.background = "url(img/"+num+".jpg) 0px "+(i++)*-10+"px";
+			}
+		},0.1)
+		.staggerTo(".part",1,{
+			rotationX:0,
+			// delay:2,
+			onComplete:function(){
+				if(this.target==aPart[aPart.length-1]){
+					isStart = false;
+				}
+			}
+		},0.1,"-=3");
+		
+
+	
+	}
+
+	var num = 1;
+	// var btn = document.getElementById('btn');
+	// btn.onclick = function(){//点击调用
+	// 	set(num);
+	// 	num++;
+	// 	if(num>4){ num=0; }
+	// }
+	setInterval(()=>{
+		set(num);
+		num++;
+		if(num>4){ num=0; }
+	},4000)
+
+</script>
+</html>
