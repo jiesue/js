@@ -1,0 +1,104 @@
+html,
+body {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+html,
+body,
+div,
+img,
+span,
+p {
+  box-sizing: border-box; }
+
+body {
+  font-family: RTWSYueGoTrial-Regular;
+  background-color: transparent;
+  position: relative; }
+
+.top {
+  position: relative;
+  width: 100%;
+  height: 7rem;
+  background: url(../images/1.png) no-repeat;
+  background-size: 100% 100%;
+  color: #FFCC01; }
+  .top p {
+    width: 100%;
+    font-size: .16rem;
+    text-align: center; }
+  .top .time {
+    position: absolute;
+    bottom: 2.35rem; }
+  .top .num {
+    position: absolute;
+    bottom: 0.3rem; }
+
+.middle {
+  position: relative;
+  width: 100%;
+  height: 8.2rem;
+  margin-top: -1px;
+  background: url(../images/2.png) no-repeat;
+  background-size: 100% 100%; }
+  .middle .btn_w {
+    position: absolute;
+    height: .4rem;
+    display: flex;
+    width: 90%;
+    margin-left: .38rem;
+    justify-content: space-around; }
+    .middle .btn_w.first {
+      top: 3.13rem; }
+    .middle .btn_w.last {
+      top: 6.53rem; }
+    .middle .btn_w .btn {
+      width: 1.6rem;
+      height: .4rem;
+      background: #ffcc01;
+      border-radius: .2rem; }
+    .middle .btn_w .btn.enough {
+      background: url(../images/enough.png) 0/cover; }
+    .middle .btn_w .btn.lacking {
+      background: url(../images/lacking.png) 0/cover; }
+
+.bottom {
+  width: 100%;
+  height: 5.3rem;
+  margin-top: -.01rem;
+  background: url(../images/3.png) no-repeat;
+  background-size: 100% 100%; }
+  .bottom h3 {
+    font-size: .4rem;
+    font-weight: bold;
+    color: #ed4e3b;
+    text-align: center; }
+  .bottom .rule {
+    width: 6.32rem;
+    height: 4.03rem;
+    margin: .2rem .42rem  .54rem .76rem;
+    font-size: .26rem;
+    color: #ed4e3b;
+    line-height: .42rem; }
+    .bottom .rule .rule_item {
+      margin-bottom: 0.35rem;
+      font-weight: bold;
+      list-style-type: disc; }
+
+.prompt {
+  position: fixed;
+  top: 29%;
+  left: 50%;
+  width: 1.7rem;
+  height: .46rem;
+  transform: translateX(-0.85rem);
+  line-height: .28rem;
+  text-align: center;
+  padding: 0.08rem;
+  color: #fff;
+  font-size: 0.25rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 0.1rem; }
+
+/*# sourceMappingURL=index.css.map */
